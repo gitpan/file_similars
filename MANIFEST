@@ -1,0 +1,15 @@
+COPYING
+Changes
+MANIFEST
+Makefile.PL
+README.html
+Similars.htm
+Similars.pm
+Similars.why.htm
+fileSimilars.htm
+fileSimilars.pl
+test.pl
+test/CardLayoutTest.java
+test/LayoutTest.java
+test/PopupTest.java
+test/TestLayout.java

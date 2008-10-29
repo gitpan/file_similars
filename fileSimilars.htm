@@ -1,0 +1,122 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>fileSimilars - Similar files locator</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body style="background-color: white">
+
+
+<!-- INDEX BEGIN -->
+<div name="index">
+<p><a name="__index__"></a></p>
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#basic_usage">Basic Usage</a></li>
+		<li><a href="#advanced_usages">Advanced Usages</a></li>
+	</ul>
+
+	<li><a href="#author">AUTHOR</a></li>
+	<li><a href="#see_also">SEE ALSO</a></li>
+	<li><a href="#copyright">COPYRIGHT</a></li>
+	<li><a href="#todo">TODO</a></li>
+</ul>
+
+<hr name="index" />
+</div>
+<!-- INDEX END -->
+
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>fileSimilars - Similar files locator</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+  [perl -S] fileSimilars.pl [--level=1] [dirs...]</pre>
+<p>Similar-sized and similar-named files are picked as suspicious candidates of
+duplicated files.</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>
+</p>
+<h2><a name="basic_usage">Basic Usage</a></h2>
+<p>Nothing descirbes better than actual outputs. Here is an example of suspicious
+duplicated files:</p>
+<pre>
+  $ fileSimilars.pl -l 1 test
+  ## =========
+             3 'CardLayoutTest.java' 'test/'
+             5 'TestLayout.java' 'test/'</pre>
+<pre>
+  ## =========
+             4 'Python Standard Library.chm'              'test/'
+             4 'GNU - Python Standard Library (2001).chm' 'test/'
+             5 'GNU - 2001 - Python Standard Library.rar' 'test/'</pre>
+<p>The first column is the size of the file, 2nd the name, and 3rd the path.
+fileSimilars will pick similar-sized and similar-named files as suspicious
+candidates of duplicated files. Suspicious duplicated files are shown in
+groups. The motto for the listing is that, I would rather the program
+overkills (wrongly picking out suspicious ones) than neglects something that
+would cause me otherwise years to notice.</p>
+<p>By default, fileSimilars.pl assumes that similar files within the <strong>same
+folder</strong> are OK. Hence you will not get duplicate warnings for generated
+files (like .o, .class or .aux, and .dvi files) or other file series.</p>
+<p>Once you are sure that there are no duplications across different folders
+and want fileSimilars.pl to scoop deeper and further into same folder,
+specify the --level=1 command line switch (or -l 1). This is very good to
+eliminate similar mp3 files within the same folder, or downloaded files from
+big sites where different packaging methods are used, e.g.:</p>
+<pre>
+  ## =========
+         66138 jdc-src.tar.gz  .../ftp.ora.com/published/oreilly/java/javadc
+        147904 jdc-src.zip     .../ftp.ora.com/published/oreilly/java/javadc</pre>
+<p>
+</p>
+<h2><a name="advanced_usages">Advanced Usages</a></h2>
+<p>The command line parameters can be a list of dir names or file names.</p>
+<p>The command line parameter can also be a '-', a special case in which
+file information is read from stdin:</p>
+<pre>
+  find /path/you/want \( -type f -o -type l \) -follow -printf &quot;%p\t%s\n&quot; | fileSimilars.pl -</pre>
+<p>You can change the find (or fileSimilars) parameters; cache or filter the
+find result, but the find output format has to be as shown.</p>
+<p>
+</p>
+<hr />
+<h1><a name="author">AUTHOR</a></h1>
+<pre>
+ @Author:  SUN, Tong &lt;suntong001 at users sourceforge net&gt;
+ @HomeURL: <a href="http://xpt.sourceforge.net/">http://xpt.sourceforge.net/</a></pre>
+<p>
+</p>
+<hr />
+<h1><a name="see_also">SEE ALSO</a></h1>
+<p>File::Compare(3), File::Find::Duplicates(3)</p>
+<p><code>perl(1)</code>.</p>
+<p>
+</p>
+<hr />
+<h1><a name="copyright">COPYRIGHT</a></h1>
+<p>Copyright (c) 1997-2007 Tong SUN. All rights reserved.</p>
+<p>
+</p>
+<hr />
+<h1><a name="todo">TODO</a></h1>
+
+</body>
+
+</html>
