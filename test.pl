@@ -24,7 +24,7 @@ sub dotest{
     print FH 'a' x $fsize;
     close(FH);
 
-    open(TESTOUT, 'perl "-Iblib/lib" "-Iblib/arch" fileSimilars.pl --level=1 test |');
+    open(TESTOUT, 'LANG=C perl "-Iblib/lib" "-Iblib/arch" fileSimilars.pl --level=1 test |');
     my @strs = <TESTOUT>;
     my $strs = join("",@strs);
     #print "\n Returns:\n$strs";
@@ -49,7 +49,7 @@ $result0="  9 test/(eBook) GNU - Python Standard Library 2001.pdf
   5 test/TestLayout.java
 ";
 print "\n== Testing 1, files under test/ subdir:\n\n$result0";
-open(TESTOUT, 'find test -printf "%3s %p\n"  | tail -n +2 | sort -k 2 |');
+open(TESTOUT, 'find test -printf "%3s %p\n" | tail -n +2 | LANG=C sort -k 2 |');
 my @strs = <TESTOUT>;
 my $strs = join("",@strs);
 ok($strs,$result0) || print $strs;
@@ -73,7 +73,7 @@ $result0="
            5 'GNU - 2001 - Python Standard Library.pdf' 'test/'
 ";
 print "\n== Testing 2 result should be:\n$result0";
-ok($result1,$result0);
+ok($result1,$result0) || print $result1;
 
 print "
 Note:
@@ -101,7 +101,7 @@ $result0="
 ";
 print "\n== Testing 3, if Python.zip is bigger, result should be:\n$result0";
 $result1=dotest(4);
-ok($result1,$result0);
+ok($result1,$result0) || print $result1;
 
 print "
 Note:
@@ -126,7 +126,7 @@ $result0="
 ";
 print "\n== Testing 4, if Python.zip is even bigger, result should be:\n$result0";
 $result1=dotest(6);
-ok($result1,$result0);
+ok($result1,$result0) || print $result1;
 
 print "
 Note:

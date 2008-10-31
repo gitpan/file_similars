@@ -1,7 +1,7 @@
 package File::Searcher::Similars;
 
 # @Author: Tong SUN, (c)2001-2003, all right reserved
-# @Version: $Date: 2008/10/29 16:59:40 $ $Revision: 1.25 $
+# @Version: $Date: 2008/10/31 16:07:34 $ $Revision: 1.27 $
 # @HomeURL: http://xpt.sourceforge.net/
 
 # {{{ LICENSE: 
@@ -32,7 +32,7 @@ package File::Searcher::Similars;
 
 =head1 NAME
 
-File::Searcher::Similars - Similar files locator
+File::Searcher::Similars - Fast similar-files finder
 
 =head1 SYNOPSIS
 
@@ -54,7 +54,7 @@ algorithm to determine the similarity between files. Generally it means that
 if there are n files, each having approximately m words, the degree of
 calculation is merely
 
-O(n^2 * m)
+  O(n^2 * m)
 
 which is over hundreds times faster than any existing file fingerprinting
 technology.
@@ -62,6 +62,7 @@ technology.
 The self-test output will help you understand what the module do and what
 would you expect from the outcome.
 
+  $ make test
   PERL_DL_NONLAZY=1 /usr/bin/perl "-Iblib/lib" "-Iblib/arch" test.pl
   1..4
   # Running under perl version 5.010000 for linux
@@ -194,7 +195,7 @@ use vars qw($progname $VERSION $verbose $debugging);
 # ============================================================== &cs ===
 # ................................................. Constant setting ...
 #
-$VERSION = sprintf("%d.%02d", q$Revision: 1.25 $ =~ /(\d+)\.(\d+)/);
+$VERSION = sprintf("%d.%02d", q$Revision: 1.27 $ =~ /(\d+)\.(\d+)/);
 
 
 # ============================================================== &gv ===

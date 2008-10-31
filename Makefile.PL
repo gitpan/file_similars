@@ -8,6 +8,7 @@ WriteMakefile(
     NAME		=> 'File::Searcher::Similars',
     AUTHOR              => 'Tong Sun <suntong@cpan.org>',
     VERSION_FROM	=> 'Similars.pm', # finds $VERSION
+    ABSTRACT_FROM       => 'Similars.pm',
     EXE_FILES		=> [ 'fileSimilars.pl' ],
     PL_FILES            => {},
     PREREQ_PM => {

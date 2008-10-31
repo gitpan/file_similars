@@ -2,7 +2,7 @@
 # -*- perl -*- 
 
 # @Author: Tong SUN, (c)2001-2003, all right reserved
-# @Version: $Date: 2006/12/27 01:32:12 $ $Revision: 1.4 $
+# @Version: $Date: 2008/10/31 16:00:47 $ $Revision: 1.5 $
 # @HomeURL: http://xpt.sourceforge.net/
 
 # {{{ LICENSE: 
@@ -128,7 +128,7 @@ find result, but the find output format has to be as shown.
 
 =head1 AUTHOR
 
- @Author:  SUN, Tong <suntong001 at users sourceforge net>
+ @Author:  SUN, Tong <suntong at cpan.org>
  @HomeURL: http://xpt.sourceforge.net/
 
 =head1 SEE ALSO
@@ -139,7 +139,7 @@ perl(1).
 
 =head1 COPYRIGHT
 
-Copyright (c) 1997-2007 Tong SUN. All rights reserved.
+Copyright (c) 1997-2008 Tong SUN. All rights reserved.
 
 =head1 TODO
 

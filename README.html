@@ -463,13 +463,14 @@ existing file fingerprinting technology.</p></div>
 would you expect from the outcome.</p></div>
 <div class="literalblock">
 <div class="content">
-<pre><tt>PERL_DL_NONLAZY=1 /usr/bin/perl "-Iblib/lib" "-Iblib/arch" test.pl
-1..4
+<pre><tt>$ make test
+PERL_DL_NONLAZY=1 /usr/bin/perl "-Iblib/lib" "-Iblib/arch" test.pl
+1..4 todo 1;
 # Running under perl version 5.010000 for linux
-# Current time local: Wed Oct 29 11:35:06 2008
-# Current time GMT:   Wed Oct 29 15:35:06 2008
+# Current time local: Fri Oct 31 12:31:40 2008
+# Current time GMT:   Fri Oct 31 16:31:40 2008
 # Using Test.pm version 1.25
-# Testing File::Searcher::Similars version 1.23</tt></pre>
+# Testing File::Searcher::Similars version 1.27</tt></pre>
 </div></div>
 <h4 id="_testing_1_files_under_test_subdir">Testing 1, files under test/ subdir:</h4>
 <div class="literalblock">
@@ -482,7 +483,7 @@ would you expect from the outcome.</p></div>
   3 test/PopupTest.java
   2 test/Python Standard Library.zip
   5 test/TestLayout.java
-ok 1</tt></pre>
+ok 1 # (test.pl at line 55 TODO?!)</tt></pre>
 </div></div>
 <div class="para"><p>Note:</p></div>
 <div class="ilist"><ul>
@@ -521,7 +522,7 @@ There are 2 groups of similar files picked out by the script.
 </li>
 <li>
 <p>
-The similar files are picked because their file names looks similar.
+The similar files are picked because their file names look similar.
 </p>
 </li>
 <li>
@@ -639,7 +640,7 @@ Copy it to a directory which is in the PATH.</p></div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2008-10-29 12:41:13 EDT
+Last updated 2008-10-31 12:37:48 EDT
 </div>
 </div>
 </body>

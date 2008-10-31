@@ -1,0 +1,165 @@
+= Fast Similar Files Finder
+
+== Basics
+
+=== Info
+
+fileSimilars.pl walks along the given dirs to find all similar files.
+
+=== Source
+
+fileSimilars homepage
+http://xpt.sourceforge.net/tools/file_similars/
+
+fileSimilars releases
+https://sourceforge.net/project/showfiles.php?group_id=163815&package_id=207422
+
+=== Description
+
+fileSimilars.pl will find all similar files, not only identical ones:
+different version (.txt, .html, or .pdf) and different compression methods
+(.zip, .gz, .tar.gz, .bip2), MP3 files with slightly different names or even
+different sample rates, etc. It uses advanced soundex vector algorithm to
+determine the file similarities.
+
+The file similarity checking is extremely fast. It uses advanced soundex
+vector algorithm to determine the similarity between files. Generally it
+means that if there are n files, each having approximately m words in the
+file name, the degree of calculation is merely
+
+ O(n^2 * m)
+
+regardless of file size. This is over hundreds times faster than any
+existing file fingerprinting technology.
+
+=== Support
+
+Please visit the 
+https://sourceforge.net/forum/forum.php?forum_id=619515[xpt tools support] page.
+
+=== Files
+
+link:Similars.news[Release notes]. 
+
+link:Changes[Changes logs]. 
+
+link:fileSimilars.htm[fileSimilars user manual].
+
+link:Similars.htm[Similars module user manual].
+
+== Help
+
+The self-test output will help you understand what the module do and what
+would you expect from the outcome.
+
+  $ make test
+  PERL_DL_NONLAZY=1 /usr/bin/perl "-Iblib/lib" "-Iblib/arch" test.pl
+  1..4 todo 1;
+  # Running under perl version 5.010000 for linux
+  # Current time local: Fri Oct 31 12:31:40 2008
+  # Current time GMT:   Fri Oct 31 16:31:40 2008
+  # Using Test.pm version 1.25
+  # Testing File::Searcher::Similars version 1.27
+  
+==== Testing 1, files under test/ subdir:
+  
+    9 test/(eBook) GNU - Python Standard Library 2001.pdf
+    3 test/CardLayoutTest.java
+    5 test/GNU - 2001 - Python Standard Library.pdf
+    4 test/GNU - Python Standard Library (2001).rar
+    9 test/LayoutTest.java
+    3 test/PopupTest.java
+    2 test/Python Standard Library.zip
+    5 test/TestLayout.java
+  ok 1 # (test.pl at line 55 TODO?!)
+  
+Note:
+  
+  - The fileSimilars.pl script will pick out similar files from them in next test.
+  - Let's assume that the number represent the file size in KB.
+  
+==== Testing 2 result should be:
+  
+  ## =========
+             3 'CardLayoutTest.java' 'test/'
+             5 'TestLayout.java' 'test/'
+  
+  ## =========
+             4 'GNU - Python Standard Library (2001).rar' 'test/'
+             5 'GNU - 2001 - Python Standard Library.pdf' 'test/'
+  ok 2
+  
+Note:
+  
+  - There are 2 groups of similar files picked out by the script.
+    The second group makes more sense.
+  - The similar files are picked because their file names look similar.
+  - However, the file size plays an important role as well.
+  - There are 2 files in the second similar files group.
+  - The file 'Python Standard Library.zip' is not considered to be similar to
+    the group because its size is not similar to the group.
+  
+==== Testing 3, if Python.zip is bigger, result should be:
+  
+  ## =========
+             3 'CardLayoutTest.java' 'test/'
+             5 'TestLayout.java' 'test/'
+  
+  ## =========
+             4 'Python Standard Library.zip' 'test/'
+             4 'GNU - Python Standard Library (2001).rar' 'test/'
+             5 'GNU - 2001 - Python Standard Library.pdf' 'test/'
+  ok 3
+  
+Note:
+  
+  - There are 3 files in the second similar files group.
+  - The file 'Python Standard Library.zip' is now in the 2nd similar files
+    group because its size is now similar to the group.
+  
+==== Testing 4, if Python.zip is even bigger, result should be:
+  
+  ## =========
+             3 'CardLayoutTest.java' 'test/'
+             5 'TestLayout.java' 'test/'
+  
+  ## =========
+             4 'GNU - Python Standard Library (2001).rar'       'test/'
+             5 'GNU - 2001 - Python Standard Library.pdf'       'test/'
+             6 'Python Standard Library.zip'                    'test/'
+             9 '(eBook) GNU - Python Standard Library 2001.pdf' 'test/'
+  ok 4
+  
+Note:
+  
+  - There are 4 files in the second similar files group.
+  - The file 'Python Standard Library.zip' is still in the group.
+  - But this time, because it is also considered to be similar to the .pdf
+    file (since their size are now similar, 6 vs 9), a 4th file the .pdf
+    is now included in the 2nd group.
+  - If the size of file 'Python Standard Library.zip' is 12(KB), then the
+    second similar files group will be split into two. Do you know why and
+    which files each group will contain?
+
+== Installation & Configuration
+
+=== Installation
+
+ perl Makefile.PL 
+ make 
+ make test
+ make install
+
+There includes in the package a client program called fileSimilars.pl.
+Copy it to a directory which is in the PATH. 
+
+=== Get Help
+
+Issue 'fileSimilars.pl' to get help on how to use it. And also,
+
+ perldoc File::Searcher::Similars
+
+== Misc
+
+link:Similars.why.htm[Why writting such tool; why it might be necessary].
+
